@@ -34,6 +34,14 @@ provider "aws" {
   #secret_key = var.aws_secret_key
   region     = var.region
 }
+resource "aws_iam_user" "test_user" {
+  name = "user-${count.index}" 
+  count = 3
+  tags = {
+    time_created = timestamp()    
+    department = "OPS"
+  }
+}
 
 # Add .gitignore file in this directory with the terraform.tfvars
 
