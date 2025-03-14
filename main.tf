@@ -39,7 +39,7 @@ resource "aws_iam_user" "test_user" {
   count = 3
   tags = {
     time_created = timestamp()    
-    department = "OPS"
+    department = "OPSS"
   }
 }
 
