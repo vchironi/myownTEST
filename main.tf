@@ -1,6 +1,38 @@
+terraform {
+  cloud { 
+    
+    organization = "AWS_UN" 
+
+    workspaces { 
+      name = "tf-cloud-test" 
+    } 
+  } 
+  
+  
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.01"
+    }
+  }
+
+ }
+
+
+
+
+
+# Variable blocks directly within the main.tf. No arguments necessary.
+#variable "aws_access_key" {}
+#variable "aws_secret_key" {}
+variable "region" {} 
+# provider arguments call on the variables which then call on terraform.tfvars for the values.
 provider "aws" {
-  region= var.region
+  #access_key = var.aws_access_key
+  #secret_key = var.aws_secret_key
+  region     = var.region
 }
+
 
 # Create an IAM role for the Lambda function
 resource "aws_iam_role" "lambda_exec" {
